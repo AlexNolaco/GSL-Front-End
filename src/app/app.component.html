@@ -1,9 +1,6 @@
 <div *ngIf="getLogged(); then notlogged else logged"></div>
 <ng-template #logged>
-  
-       <app-content></app-content>
-  <div> alex </div>
-
+ <app-content></app-content>
 </ng-template>
 <ng-template #notlogged >
   <app-login></app-login>

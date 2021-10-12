@@ -12,16 +12,21 @@ export class ContentComponent implements OnInit {
   ngOnInit(): void {
   }
   mostraMenu() {
-    var a = document?.getElementById("sidebarMenu");
-    if (a) {
-      if ( !this.aberto) {
+    var a = document.getElementById("sidebarMenu");
+    
+ 
+    if (a  ) {
+      if (!this.aberto) {
         a.style.display = "block";
         a.style.marginTop = "-30px";
+        a.style.padding = "0px!important";
+         
         this.aberto = true;
       }
       else {
         a.style.display = "none";
         a.style.marginTop = "0px";
+ 
         this.aberto = false;
       }
     }
