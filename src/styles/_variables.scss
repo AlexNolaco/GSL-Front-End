@@ -1,0 +1,273 @@
+//	Size Fonts
+$size-small: 14px;
+$size-normal: 16px;
+$size-medium: 25px;
+$size-big: 41px;
+$size-large-big: 67px;
+$size-extra-big: 109px;
+
+//	Base Colors
+$GSL-blue: #0079c2;
+$gsll-blue: #0069b4;
+$prussian-blue: #001e32;
+$regal-blue: #003c64;
+$lochmara-blue: #0077c8;
+$cod-gray: #1d1d1d;
+$support-gray: #929292;
+$chalice-silver: #a5a5a5;
+$line-gray: #d8d8d8;
+$urban-sky: #f0f0f0;
+
+$silver: #a5a5a5;
+$line: #d8d8d8;
+$lightLine: #f0f0f0;
+$metal: #d5cac1;
+
+$chestnut: #b8423e;
+$cerulean: #08a5d3;
+$affair: #6d4592;
+$gold-drop: #f27d00;
+$tulip-three: #e6b627;
+$goblin: #347d3e;
+$apple: #49af57;
+$puerto-rico: #3bc8bc;
+
+// Color Saturation
+$light: lighten($silver, 50%);
+$dark: #231f20;
+
+// Accessibility Colors
+$the-blue: #3455db;
+$special-blue: #00008b;
+$special-link: #0000e0;
+$special-pure-dark: #000000;
+$special-swamp: #4b5555;
+
+$special-fire: #aa0000;
+$special-sea: #007faa;
+$special-poison: #7600a8;
+$special-pumpkin: #aa5d00;
+$special-moss: #806c00;
+$special-nature: #005500;
+$special-pool: #008080;
+
+//	Breakpoints
+$tablet-size: 'screen and (min-width: 769px)';
+$desktop-size: 'screen and (min-width: 991px)';
+$wide-size: 'screen and (min-width: 1200px)';
+$mobile-size: 'screen and (max-width: 330px)';
+$only-mobile: 'screen and (max-width: 560px)';
+
+// Base Color OLD
+$color-primary: #0b0c0c;
+$aux-two: #f44336; //red
+$aux-three: #ff9800; //orange
+$aux-four: #4caf50; //green
+$aux-five: #9e9e9e; //gray
+$aux-six: #c0c0c8; //gray light
+
+$yellow-strong: #f57c00;
+$green-strong: #1b5e20;
+$light-blue: #00a7e5;
+$red: #b71c1c;
+$blue-strong: #1f3480;
+$green-light: #6dbf79;
+
+//Font Golden Ratio
+$golden-ratio-6: 0.375rem;
+$golden-ratio-9: 0.5625rem;
+$golden-ratio-16: 1rem;
+$golden-ratio-25: 1.5625rem;
+$golden-ratio-41: 2.5625rem;
+$golden-ratio-67: 4.1875rem;
+$golden-ratio-109: 6.8125rem;
+$golden-ratio-177: 11.0625rem;
+
+//NUMBERS
+$percentage: 100%;
+$zero: 0;
+
+//DIMENSION
+$full-width: $percentage;
+$full-height: $percentage;
+
+//HERITAGE
+$inherit: inherit;
+$borderbox: border-box;
+
+//Break Width
+$break-small: 480px;
+$break-middle: 768px;
+
+/* Fonts
+----------------------------------------------------------------------- */
+//	Typography
+$font-primary: 'sentico_sansregular';
+$font-primary-bold: "sentico_sansbold";
+$font-primary-light: "sentico_sanslight";
+$font-primary-thin: "sentico_sansthin";
+$font-primary-medium: "sentico_medium";
+$font-long-texts: "open_sansregular";
+// Font Sizes
+$size-small: 14px;
+$size-normal: 16px;
+$size-medium: 25px;
+$size-big: 41px;
+$size-large-big: 67px;
+$size-extra-big: 109px;
+
+@font-face {
+    font-family: open_sansregular;
+    src: url('/assets/fonts/OpenSans-Regular.otf');
+}
+
+@font-face {
+    font-family: sentico_sansregular;
+    src: url('/assets/fonts/SenticoSansDT-Regular.otf');
+}
+
+//SenticoSansDT-Bold
+@font-face {
+    font-family: sentico_sansbold;
+    src: url("/assets/fonts/SenticoSansDT-Bold.otf");
+}
+
+//SenticoSansDT-Italic
+@font-face {
+    font-family: senticosans_italic;
+    src: url("/assets/fonts/SenticoSansDT-Italic.otf");
+}
+
+//SenticoSansDT-Light
+@font-face {
+    font-family: sentico_sanslight;
+    src: url("/assets/fonts/SenticoSansDT-Light.otf");
+}
+
+//SenticoSansDT-Medium
+@font-face {
+    font-family: sentico_medium;
+    src: url("/assets/fonts/SenticoSansDT-Medium.otf");
+}
+
+//DISPLAY
+$hide: none;
+$show: block;
+$in-block: inline-block;
+
+//OOCS
+#RELATIVE {
+    position: relative;
+}
+#ABSOLUTE {
+    position: absolute;
+}
+#FIXED {
+    position: fixed;
+}
+#LEFT {
+    float: left;
+}
+#RIGHT {
+    float: right;
+}
+#CONTENT {
+    content: "";
+}
+#CENTERMARGIN {
+    margin: 0 auto;
+}
+
+//DISPLAY
+#HIDE {
+    display: $hide;
+}
+#SHOW {
+    display: $show;
+}
+#IN-BLOCK {
+    display: $in-block;
+}
+
+//SPACE
+#NO-MARGIN {
+    margin: $zero;
+}
+#NO-PADDING {
+    padding: $zero;
+}
+
+//FONT
+#FAMILY {
+    font-family: sentico_sansregular, sans-serif;
+}
+#LIGHTER {
+    font-weight: lighter;
+}
+#NORMAL {
+    font-weight: normal;
+}
+#BOLD {
+    font-weight: bold;
+}
+#ITALIC {
+    font-style: italic;
+}
+
+//BORDER
+#NO-BORDER {
+    border: $hide;
+}
+
+//TEXT
+#INDENT {
+    text-indent: -9999px;
+}
+#UNDERLINE {
+    text-decoration: underline;
+}
+#NO-UNDERLINE {
+    text-decoration: $hide;
+}
+#UPPERCASE {
+    text-transform: uppercase;
+}
+#LOWERCASE {
+    text-transform: lowercase;
+}
+#CENTER {
+    text-align: center;
+}
+
+//OTHERS
+#POINTER {
+    cursor: pointer;
+}
+#NO-LIST {
+    list-style: $hide;
+}
+#CIRCLE {
+    border-radius: 50%;
+}
+#OVERFLOW {
+    overflow: auto;
+}
+#HIDDEN {
+    overflow: hidden;
+}
+#ANIMATE {
+    transition: .3s;
+}
+#SPACING {
+    letter-spacing: 2px;
+}
+
+/* COR PRIMÁRIA */
+$corPrimaria: $GSL-blue;
+$corSecundaria: $regal-blue;
+//------------------------------------
+// Global Color
+//------------------------------------
+
+$primaryColor: var(--corPrimaria, $GSL-blue);
+$secondaryColor: var(--corSecundaria, $regal-blue);
