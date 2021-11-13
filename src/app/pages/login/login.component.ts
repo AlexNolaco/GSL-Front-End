@@ -11,5 +11,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  logar(){
+
+    localStorage.setItem('accessToken', '123');
+    let name = localStorage.getItem('name');
+    //localStorage.removeItem('name');
+    //localStorage.clear();
+  }
 
 }

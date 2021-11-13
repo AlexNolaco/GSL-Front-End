@@ -1,17 +1,16 @@
- 
+
 <body class="text-center">
   <main class="form-signin">
-    <img class="mb-4" src="../assets/logo.png" alt="" width="150" height="40">
-    <h6 class="h6 mb-4 fw-normal">Sistema de gestão de serviços de logística</h6>
+
+    <h1 class="mb-4 fw-normal">GSL</h1>
     <div class="form-floating">
           <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">Nome de usuário</label>
+          <label for="floatingInput">Login</label>
     </div><br>
     <div class="form-floating">
       <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Senha</label>
     </div><br>
-   <button style="cursor:pointer" class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+   <button (click)="logar()" style="cursor:pointer" class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
   </main>
 </body>
- 

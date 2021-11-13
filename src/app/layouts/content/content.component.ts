@@ -11,25 +11,28 @@ export class ContentComponent implements OnInit {
   aberto = false;
   ngOnInit(): void {
   }
+  remove() {
+    localStorage.clear();
+  }
   mostraMenu() {
     var a = document.getElementById("sidebarMenu");
-    
- 
+
+
     if (a  ) {
       if (!this.aberto) {
         a.style.display = "block";
         a.style.marginTop = "-30px";
         a.style.padding = "0px!important";
-         
+
         this.aberto = true;
       }
       else {
         a.style.display = "none";
         a.style.marginTop = "0px";
- 
+
         this.aberto = false;
       }
     }
-   
+
   }
 }
