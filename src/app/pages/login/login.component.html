@@ -4,13 +4,22 @@
 
     <h1 class="mb-4 fw-normal">GSL</h1>
     <div class="form-floating">
-          <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input  type="text" class="form-control" id="floatingInput" [(ngModel)]="login" placeholder="name@example.com">
           <label for="floatingInput">Login</label>
     </div><br>
+
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input [(ngModel)]="senha"  type="password" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Senha</label>
     </div><br>
-   <button (click)="logar()" style="cursor:pointer" class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+   <button [disabled]="login == '' || senha == ''" (click)="logar()" style="cursor:pointer" class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+   <br><br>
+
+   <div *ngIf="erro" class="alert alert-danger" style="z-index: 99999;" role="alert">
+    {{erroMessage}}
+    </div>
   </main>
+
 </body>
+
+

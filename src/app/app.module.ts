@@ -6,17 +6,31 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ContentComponent } from './layouts/content/content.component';
+import { FormsModule } from '@angular/forms';
+import { PerfisComponent } from './pages/perfis/perfis.component';
+import { ClientesComponent } from './pages/clientes/clientes.component';
+import { DepositosComponent } from './pages/depositos/depositos.component';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { MercadoriasComponent } from './pages/mercadorias/mercadorias.component';
+import { FornecedoresComponent } from './pages/fornecedores/fornecedores.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
 
-    ContentComponent
+    ContentComponent,
+      PerfisComponent,
+      ClientesComponent,
+      DepositosComponent,
+      UsuariosComponent,
+      MercadoriasComponent,
+      FornecedoresComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
   ],
   providers: [],

@@ -1,22 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  login="";
+  senha="";
+  erro= false;
+  erroMessage = "";
+  constructor(private userService: UserService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-  logar(){
-
-    localStorage.setItem('accessToken', '123');
-    let name = localStorage.getItem('name');
-    //localStorage.removeItem('name');
-    //localStorage.clear();
+  async logar(){
+    this.userService.login(this.login, this.senha).then(
+      (data: any) => {
+        localStorage.setItem('accessToken', data.token);
+        localStorage.setItem('user.identificador', data.user.identificador);
+        localStorage.setItem('user.nome', data.user.nome);
+        localStorage.setItem('user.login', data.user.login);
+        localStorage.setItem('user.perfil', data.user.perfil);
+      },
+      (err: any) => {
+        this.erro = true;
+        console.log(err);
+        this.erroMessage = err.error.message;
+        setTimeout(() => {this.erro= false}, 5000);
+      }
+    );
   }
 
 }

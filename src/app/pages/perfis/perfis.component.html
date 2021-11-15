@@ -1,0 +1,65 @@
+
+<div class="container">
+  <h2 >Perfis</h2>
+<br>
+  <div class="row">
+
+    <div class="col-12">
+      <select (change)="onChange($event)" class="form-select">
+        <option selected [value]="2">Fornecedor</option>
+        <option [value]="3">Cliente</option>
+        <option [value]="4">Colaborador</option>
+      </select>
+    </div>
+  </div>
+
+  <br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tela</th>
+      <th scope="col">Leitura</th>
+      <th scope="col">Gravação</th>
+      <th scope="col">Edição</th>
+      <th scope="col">Remoção</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let tb of tabela;let i = index">
+      <tr>
+
+        <td> {{tb.nometela}} </td>
+        <td>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [checked]="tb.leitura" [(ngModel)]="tb.leitura" value="" >
+          </div>
+        </td>
+
+        <td>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [checked]="tb.gravacao" [(ngModel)]="tb.gravacao" value="" >
+          </div>
+        </td>
+        <td>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [checked]="tb.edicao" [(ngModel)]="tb.edicao" value="" >
+          </div>
+        </td>
+        <td>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [checked]="tb.remocao" [(ngModel)]="tb.remocao" value="" >
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+    <br>
+    <button type="button" class="btn btn-outline-primary">Gravar alterações</button>
+
+  </tbody>
+</table>
+
+</div>
+
