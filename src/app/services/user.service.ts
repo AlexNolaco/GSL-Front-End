@@ -44,5 +44,10 @@ export class UserService {
       return await this.http.put(api + "/permissoes", item).toPromise();
     }
 
+    public async obtemTodosOsUsuariosExcetoLogado(item: any) {
+      const api = "http://localhost:61374";
+      //const api = "https://cognito-rbac.herokuapp.com";
 
+      return await this.http.get(api + "/usuarios?idUsuarioLogado="+ item).toPromise();
+    }
 }

@@ -13,7 +13,7 @@ export class ContentComponent implements OnInit  {
   }
   aberto = false;
   tabelaPermissoes: any = [];
-  pagina = ""; //TODO: MUDAR ISSO
+  pagina = "Usuários"; //TODO: MUDAR ISSO
 
   setPagina(pag: string){
     this.pagina = pag;
