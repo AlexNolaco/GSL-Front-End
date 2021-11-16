@@ -22,7 +22,7 @@ export class UserService {
         login,
         senha
       }
-      const api = "https://cognito-rbac.herokuapp.com/";
+      const api = "https://cognito-rbac.herokuapp.com";
       return this.http.post(api + "/Login", body).toPromise();
     }
     public permissoes() {
@@ -30,17 +30,17 @@ export class UserService {
       return this.http.get(api + "/Permissoes?idPerfil="+ localStorage.getItem('user.perfil')).toPromise();
     }
     public permissoesPorId(id: any) {
-      const api = "https://cognito-rbac.herokuapp.com/";
+      const api = "https://cognito-rbac.herokuapp.com";
       return this.http.get(api + "/Permissoes?idPerfil="+ id).toPromise();
     }
 
     public async obterNomeTelaPorId(id: any) {
-      const api = "https://cognito-rbac.herokuapp.com/";
+      const api = "https://cognito-rbac.herokuapp.com";
       return await this.http.get(api + "/telas?idTela="+ id, {responseType: 'text'}).toPromise();
     }
 
     public async alterarpermissao(item: any) {
-      const api = "https://cognito-rbac.herokuapp.com/";
+      const api = "https://cognito-rbac.herokuapp.com";
       return await this.http.put(api + "/permissoes", item).toPromise();
     }
 
