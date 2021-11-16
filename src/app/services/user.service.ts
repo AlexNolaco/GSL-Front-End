@@ -26,7 +26,7 @@ export class UserService {
       return this.http.post(api + "/Login", body).toPromise();
     }
     public permissoes() {
-      const api = "http://localhost:61374";
+      const api = "https://cognito-rbac.herokuapp.com";
       return this.http.get(api + "/Permissoes?idPerfil="+ localStorage.getItem('user.perfil')).toPromise();
     }
     public permissoesPorId(id: any) {
