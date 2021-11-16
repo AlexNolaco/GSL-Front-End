@@ -2,6 +2,13 @@
 <div class="container">
   <h2 >Perfis</h2>
 <br>
+<div *ngIf="salvoSucesso"   class="alert alert-success" role="alert">
+  Salvo com sucesso!
+</div>
+<div *ngIf="salvando"   class="alert alert-primary" role="alert">
+  Salvando...
+</div>
+
   <div class="row">
 
     <div class="col-12">
@@ -20,8 +27,8 @@
     <tr>
       <th scope="col">Tela</th>
       <th scope="col">Leitura</th>
-      <th scope="col">Gravação</th>
-      <th scope="col">Edição</th>
+      <th scope="col">Inclusão</th>
+      <th scope="col">Alteração</th>
       <th scope="col">Remoção</th>
 
 
@@ -34,32 +41,36 @@
         <td> {{tb.nometela}} </td>
         <td>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" [checked]="tb.leitura" [(ngModel)]="tb.leitura" value="" >
+            <input class="form-check-input" style="cursor:pointer" type="checkbox" [checked]="tb.leitura" [(ngModel)]="tb.leitura" value="" >
           </div>
         </td>
 
         <td>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" [checked]="tb.gravacao" [(ngModel)]="tb.gravacao" value="" >
+            <input class="form-check-input" style="cursor:pointer" type="checkbox" [checked]="tb.gravacao" [(ngModel)]="tb.gravacao" value="" >
           </div>
         </td>
         <td>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" [checked]="tb.edicao" [(ngModel)]="tb.edicao" value="" >
+            <input class="form-check-input" style="cursor:pointer" type="checkbox" [checked]="tb.edicao" [(ngModel)]="tb.edicao" value="" >
           </div>
         </td>
         <td>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" [checked]="tb.remocao" [(ngModel)]="tb.remocao" value="" >
+            <input class="form-check-input" style="cursor:pointer" type="checkbox" [checked]="tb.remocao" [(ngModel)]="tb.remocao" value="" >
           </div>
         </td>
       </tr>
+
+
     </ng-container>
-    <br>
-    <button type="button" class="btn btn-outline-primary">Gravar alterações</button>
 
   </tbody>
 </table>
 
+
+
+
+    <button style="float:right" (click)="salvar()" type="button" class="btn btn-outline-primary">Salvar</button>
 </div>
 

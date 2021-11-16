@@ -39,6 +39,10 @@ export class UserService {
       return await this.http.get(api + "/telas?idTela="+ id, {responseType: 'text'}).toPromise();
     }
 
+    public async alterarpermissao(item: any) {
+      const api = "http://localhost:61374";
+      return await this.http.put(api + "/permissoes", item).toPromise();
+    }
 
 
 }
