@@ -39,6 +39,7 @@ export class UserService {
       return await this.http.get(api + "/telas?idTela="+ id, {responseType: 'text'}).toPromise();
     }
 
+
     public async alterarpermissao(item: any) {
       const api = "https://cognito-rbac.herokuapp.com";
       return await this.http.put(api + "/permissoes", item).toPromise();
@@ -50,4 +51,23 @@ export class UserService {
 
       return await this.http.get(api + "/usuarios?idUsuarioLogado="+ item).toPromise();
     }
+
+    public async cadastrarUsuario(obj: any) {
+      const api = "http://localhost:61374";
+      //const api = "https://cognito-rbac.herokuapp.com";
+      return this.http.post(api + "/usuarios", obj).toPromise();
+    }
+    public async removerUsuario(obj: any) {
+      const api = "http://localhost:61374";
+      //const api = "https://cognito-rbac.herokuapp.com";
+      return await this.http.delete(api + "/usuarios?identificador=" + obj).toPromise();
+    }
+    public async editarUsuario(obj: any) {
+      const api = "http://localhost:61374";
+      //const api = "https://cognito-rbac.herokuapp.com";
+      return await this.http.put(api + "/usuarios", obj).toPromise();
+    }
+
+
+
 }
