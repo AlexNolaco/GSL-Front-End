@@ -16,58 +16,98 @@ export class UserService {
 
       return token != null;
     }
+    private api = "https://cognito-rbac.herokuapp.com";
+    private aws = "https://fjeofy31k8.execute-api.us-east-2.amazonaws.com/prod";
 
     public login(login: any, senha: any) {
       const body = {
         login,
         senha
       }
-      const api = "https://cognito-rbac.herokuapp.com";
-      return this.http.post(api + "/Login", body).toPromise();
+      return this.http.post(this.api + "/Login", body).toPromise();
     }
+
     public permissoes() {
-      const api = "https://cognito-rbac.herokuapp.com";
-      return this.http.get(api + "/Permissoes?idPerfil="+ localStorage.getItem('user.perfil')).toPromise();
+      return this.http.get(this.api + "/Permissoes?idPerfil="+ localStorage.getItem('user.perfil')).toPromise();
     }
     public permissoesPorId(id: any) {
-      const api = "https://cognito-rbac.herokuapp.com";
-      return this.http.get(api + "/Permissoes?idPerfil="+ id).toPromise();
+      return this.http.get(this.api + "/Permissoes?idPerfil="+ id).toPromise();
     }
 
     public async obterNomeTelaPorId(id: any) {
-      const api = "https://cognito-rbac.herokuapp.com";
-      return await this.http.get(api + "/telas?idTela="+ id, {responseType: 'text'}).toPromise();
+      return await this.http.get(this.api + "/telas?idTela="+ id, {responseType: 'text'}).toPromise();
     }
 
-
     public async alterarpermissao(item: any) {
-      const api = "https://cognito-rbac.herokuapp.com";
-      return await this.http.put(api + "/permissoes", item).toPromise();
+      return await this.http.put(this.api + "/permissoes", item).toPromise();
     }
 
     public async obtemTodosOsUsuariosExcetoLogado(item: any) {
-      const api = "http://localhost:61374";
-      //const api = "https://cognito-rbac.herokuapp.com";
-
-      return await this.http.get(api + "/usuarios?idUsuarioLogado="+ item).toPromise();
+      return await this.http.get(this.api + "/usuarios?idUsuarioLogado="+ item).toPromise();
     }
 
     public async cadastrarUsuario(obj: any) {
-      const api = "http://localhost:61374";
-      //const api = "https://cognito-rbac.herokuapp.com";
-      return this.http.post(api + "/usuarios", obj).toPromise();
+      return this.http.post(this.api + "/usuarios", obj).toPromise();
     }
     public async removerUsuario(obj: any) {
-      const api = "http://localhost:61374";
-      //const api = "https://cognito-rbac.herokuapp.com";
-      return await this.http.delete(api + "/usuarios?identificador=" + obj).toPromise();
+      return await this.http.delete(this.api + "/usuarios?identificador=" + obj).toPromise();
     }
     public async editarUsuario(obj: any) {
-      const api = "http://localhost:61374";
-      //const api = "https://cognito-rbac.herokuapp.com";
-      return await this.http.put(api + "/usuarios", obj).toPromise();
+      return await this.http.put(this.api + "/usuarios", obj).toPromise();
+    }
+     public async obterClientes() {
+      return await this.http.get(this.aws + "/clientes").toPromise();
+    }
+    public async obterDepositos() {
+      return await this.http.get(this.aws + "/depositos").toPromise();
+    }
+    public async obterFornecedores() {
+      return await this.http.get(this.aws + "/fornecedores").toPromise();
+    }
+    public async obterMercadorias() {
+      return await this.http.get(this.aws + "/mercadorias").toPromise();
     }
 
+    public async deletarClientes() {
+      return await this.http.delete(this.aws + "/clientes").toPromise();
+    }
+    public async deletarDepositos() {
+      return await this.http.delete(this.aws + "/depositos").toPromise();
+    }
+    public async deletarFornecedores() {
+      return await this.http.delete(this.aws + "/fornecedores").toPromise();
+    }
+    public async deletarMercadorias() {
+      return await this.http.delete(this.aws + "/fornecedores").toPromise();
+    }
 
+    public async incluirClientes(obj: any) {
+      return await this.http.post(this.aws + "/clientes", obj).toPromise();
+    }
+    public async incluirDepositos(obj: any) {
+      return await this.http.post(this.aws + "/depositos", obj).toPromise();
+    }
+    public async incluirFornecedores(obj: any) {
+      return await this.http.post(this.aws + "/fornecedores", obj).toPromise();
+    }
+    public async incluirMercadorias(obj: any) {
+      return await this.http.post(this.aws + "/fornecedores", obj).toPromise();
+    }
 
+    public async alterarClientes(obj: any) {
+      return await this.http.put(this.aws + "/clientes", obj).toPromise();
+    }
+    public async alterarDepositos(obj: any) {
+      return await this.http.put(this.aws + "/depositos", obj).toPromise();
+    }
+    public async alterarFornecedores(obj: any) {
+      return await this.http.put(this.aws + "/fornecedores", obj).toPromise();
+    }
+    public async alterarMercadorias(obj: any) {
+      return await this.http.put(this.aws + "/fornecedores", obj).toPromise();
+    }
+
+    public async iniciar() {
+      await this.http.get(this.api + "/ping").toPromise();
+    }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -6,12 +6,16 @@ import { UserService } from '../../services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent  implements OnInit {
   login="";
   senha="";
   erro= false;
   erroMessage = "";
   constructor(private userService: UserService) { }
+
+  async ngOnInit() {
+    await this.userService.iniciar();
+  }
 
   async logar(){
     this.userService.login(this.login, this.senha).then(

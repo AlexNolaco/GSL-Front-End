@@ -14,6 +14,7 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { MercadoriasComponent } from './pages/mercadorias/mercadorias.component';
 import { FornecedoresComponent } from './pages/fornecedores/fornecedores.component';
 import { SearchPipePipe } from './pipes/search-pipe.pipe';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SearchPipePipe } from './pipes/search-pipe.pipe';
       UsuariosComponent,
       MercadoriasComponent,
       FornecedoresComponent,
-      SearchPipePipe
+      SearchPipePipe,
+      HomeComponent
   ],
   imports: [
     BrowserModule,

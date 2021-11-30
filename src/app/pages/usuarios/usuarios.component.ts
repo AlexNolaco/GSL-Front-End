@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import {ElementRef, } from '@angular/core';
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -8,6 +9,8 @@ import { UserService } from '../../services/user.service';
 export class UsuariosComponent implements OnInit {
 
   constructor(private userService: UserService) { }
+
+  @ViewChild('someVar') selectPerfil:ElementRef | undefined;
   usuariosLista: any;
   telaIncluir = false;
   telaDeletar = false;
@@ -87,6 +90,9 @@ export class UsuariosComponent implements OnInit {
   editar(a: any) {
     this.incluir(true, true)
     this.obj = a;
+    let el = document.querySelector('.form-select');
+    console.log(el);
+    console.log(this.selectPerfil?.nativeElement.focus());
 
   }
   async alterar() {

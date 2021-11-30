@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-fornecedores',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FornecedoresComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
+  conteudo:any;
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.userService.obterFornecedores().then(
+      (data: any) => {
+        this.conteudo = data;
+      },
+      (err) => {
+
+      }
+    );
   }
-
 }

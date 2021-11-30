@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MercadoriasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
+  conteudo:any;
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.userService.obterMercadorias().then(
+      (data: any) => {
+        this.conteudo = data;
+      },
+      (err) => {
+
+      }
+    );
   }
 
 }
