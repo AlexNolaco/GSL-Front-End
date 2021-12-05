@@ -10,7 +10,12 @@ export class FornecedoresComponent implements OnInit {
 
   constructor(private userService: UserService) { }
   conteudo:any;
+  construct = false;
   @Input() permissao:any;
+  mostrarAlerta() {
+    this.construct = true;
+    setTimeout(() => {this.construct = false}, 5000);
+  }
   async ngOnInit() {
     this.userService.log("Acesso à tela: " + this.permissao.tela);
     await this.userService.obterFornecedores().then(

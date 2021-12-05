@@ -10,6 +10,7 @@ export class ClientesComponent implements OnInit {
 
   constructor(private userService: UserService) { }
   conteudo:any;
+  construct = false;
   @Input() permissao:any;
 
   async ngOnInit(): Promise<void> {
@@ -26,4 +27,8 @@ export class ClientesComponent implements OnInit {
     );
   }
 
+  mostrarAlerta() {
+    this.construct = true;
+    setTimeout(() => {this.construct = false}, 5000);
+  }
 }

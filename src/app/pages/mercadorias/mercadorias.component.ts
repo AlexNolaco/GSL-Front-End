@@ -11,6 +11,11 @@ export class MercadoriasComponent implements OnInit {
   constructor(private userService: UserService) { }
   conteudo:any;
   @Input() permissao:any;
+  construct = false;
+  mostrarAlerta() {
+   this.construct = true;
+   setTimeout(() => {this.construct = false}, 5000);
+  }
   async ngOnInit() {
     this.userService.log("Acesso à tela: " + this.permissao.tela);
     await this.userService.obterMercadorias().then(
