@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import {ElementRef, } from '@angular/core';
 @Component({
@@ -9,6 +9,13 @@ import {ElementRef, } from '@angular/core';
 export class UsuariosComponent implements OnInit {
 
   constructor(private userService: UserService) { }
+  @Input() permissao:any;
+  selectOptions = [
+    {valor: "Administrador"},
+    {valor: "Fornecedor"},
+    {valor: "Cliente"},
+    {valor: "Colaborador"}
+  ];
 
   @ViewChild('someVar') selectPerfil:ElementRef | undefined;
   usuariosLista: any;
@@ -29,6 +36,7 @@ export class UsuariosComponent implements OnInit {
     perfil: ''
   }
   async ngOnInit() {
+    this.userService.log("Acesso à tela: " + this.permissao.tela);
     await this.buscaTudo();
   }
   async buscaTudo() {
@@ -36,12 +44,14 @@ export class UsuariosComponent implements OnInit {
       (data: any) => {
         console.log(data);
         this.usuariosLista = data;
+        this.userService.log("Obter todos os usuarios exceto logado.");
+      },
+      (err: any) => {
+        this.userService.log("Erro ao obter todos os usuarios exceto logado.");
       }
     );
   }
-  vai(a: any) {
-    console.log(a);
-  }
+
 
   onChange(evt: any) {
     this.obj.perfil = evt.target.value;
@@ -83,6 +93,7 @@ export class UsuariosComponent implements OnInit {
     this.aguarde = true;
     this.abrirTelaDeletar(false);
     await this.userService.removerUsuario(this.identificador);
+    this.userService.log("Removido usuario com identificador" + this.identificador);
     await this.buscaTudo();
     this.aguarde = false;
   }
@@ -98,6 +109,7 @@ export class UsuariosComponent implements OnInit {
   async alterar() {
     await this.userService.editarUsuario(this.obj).then(
       (data: any) => {
+        this.userService.log("Editado usuario" + this.obj.login);
         this.sucesso = true;
         this.buscaTudo();
         setTimeout(() => {
@@ -107,6 +119,7 @@ export class UsuariosComponent implements OnInit {
         }, 2000);
       },
       (err: any) => {
+        this.userService.log("Erro ao editar usuario" + this.obj.login);
         this.sucesso = false;
         this.erro = err.error;
         setTimeout(() => {this.sucesso= null}, 5000);
@@ -119,6 +132,7 @@ export class UsuariosComponent implements OnInit {
   async salvar() {
     await this.userService.cadastrarUsuario(this.obj).then(
       (data: any) => {
+        this.userService.log("Cadastrado usuario" + this.obj.login);
         this.sucesso = true;
         this.buscaTudo();
         setTimeout(() => {
@@ -128,6 +142,7 @@ export class UsuariosComponent implements OnInit {
         }, 2000);
       },
       (err) => {
+        this.userService.log("Erro ao cadastrar usuario" + this.obj.login);
         this.sucesso = false;
         this.erro = err.error;
         setTimeout(() => {this.sucesso= null}, 5000);

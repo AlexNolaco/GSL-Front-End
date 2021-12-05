@@ -25,12 +25,14 @@ export class LoginComponent  implements OnInit {
         localStorage.setItem('user.nome', data.user.nome);
         localStorage.setItem('user.login', data.user.login);
         localStorage.setItem('user.perfil', data.user.perfil);
+        this.userService.log("Login no sistema")
       },
       (err: any) => {
         this.erro = true;
         console.log(err);
         this.erroMessage = err.error.message;
         setTimeout(() => {this.erro= false}, 5000);
+        this.userService.log("Erro no login do sistema")
       }
     );
   }

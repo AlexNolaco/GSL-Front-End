@@ -16,7 +16,7 @@ export class UserService {
 
       return token != null;
     }
-    private api = "https://cognito-rbac.herokuapp.com";
+    private api = "http://api-gsl.com.br";
     private aws = "https://fjeofy31k8.execute-api.us-east-2.amazonaws.com/prod";
 
     public login(login: any, senha: any) {
@@ -49,6 +49,18 @@ export class UserService {
     public async cadastrarUsuario(obj: any) {
       return this.http.post(this.api + "/usuarios", obj).toPromise();
     }
+
+    public async log(msg: string) {
+      const id = localStorage.getItem("user.identificador") || '';
+      const perfil = localStorage.getItem("user.perfil") || '';
+      const payload = {
+        ID_USUARIO: parseInt(id),
+        ID_PERFIL: parseInt(perfil),
+        ACAO: msg
+      }
+      return this.http.post(this.api + "/logs", payload).toPromise();
+    }
+
     public async removerUsuario(obj: any) {
       return await this.http.delete(this.api + "/usuarios?identificador=" + obj).toPromise();
     }
@@ -108,6 +120,6 @@ export class UserService {
     }
 
     public async iniciar() {
-      await this.http.get(this.api + "/ping").toPromise();
+      await this.http.get(this.api + "/ping", {responseType: 'text'}).toPromise();
     }
 }

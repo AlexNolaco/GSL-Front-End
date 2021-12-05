@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { JsonpClientBackend } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -12,11 +13,16 @@ export class PerfisComponent implements OnInit {
   tabela: any;
   salvoSucesso = false;
   salvando = false;
+  @Input() permissao:any;
   ngOnInit(): void {
-    this.userService.permissoesPorId(2).then(
+    this.userService.log("Acesso à tela: " + this.permissao.tela);
+    this.userService.permissoesPorId(localStorage.getItem("user.perfil")).then(
       (data: any) => {
         this.tabela = data;
-
+        this.userService.log("Obter permissão por idPerfil: " + localStorage.getItem("user.perfil") );
+      },
+      (err: any) => {
+        this.userService.log("Erro ao obter permissão por idPerfil: " + localStorage.getItem("user.perfil"));
       }
     );
   }
@@ -28,9 +34,11 @@ export class PerfisComponent implements OnInit {
         (data: any) => {
           this.salvando = false;
           this.salvoSucesso = true;
+          this.userService.log("Alterada permissão da tela:" + element.nometela + " perfil: " + element.iD_PERFIL);
           setTimeout(() => {this.salvoSucesso= false}, 5000);
         },
         (err: any) => {
+          this.userService.log("Erro ao alterar permissão da tela:" + element.nometela + " perfil: " + element.iD_PERFIL);
           this.salvando = false;
           this.salvoSucesso = false;
         }
@@ -38,15 +46,19 @@ export class PerfisComponent implements OnInit {
     });
 
 
-    console.log(this.tabela );
+
   }
 
   onChange(evt: any) {
 
     this.userService.permissoesPorId(evt.target.value).then(
       (data: any) => {
+        this.userService.log("Obter permissões por id: " + evt.target.value);
         this.tabela = data;
         console.log(data);
+      },
+      (err: any) => {
+        this.userService.log("Erro ao obter permissões por id: " + evt.target.value);
       }
     );
   }

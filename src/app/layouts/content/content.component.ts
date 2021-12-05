@@ -36,14 +36,20 @@ export class ContentComponent implements OnInit  {
         }
         localStorage.setItem("permissoes", JSON.stringify( this.tabelaPermissoes));
         const aa: any = localStorage.getItem("permissoes");
-
+        this.userService.log("Obter permissões");
       }
     );
   }
   remove() {
+    this.userService.log("Logoff no sistema");
     localStorage.clear();
   }
 
+  selecionaPermissao() {
+    const aa: any = localStorage.getItem("permissoes");
+    const valor = JSON.parse(aa).find((x: any) => x.tela == this.pagina);
+    return valor;
+  }
 
   mostraMenu() {
     var a = document.getElementById("sidebarMenu");
