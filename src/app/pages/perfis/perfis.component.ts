@@ -16,7 +16,7 @@ export class PerfisComponent implements OnInit {
   @Input() permissao:any;
   ngOnInit(): void {
     this.userService.log("Acesso à tela: " + this.permissao.tela);
-    this.userService.permissoesPorId(localStorage.getItem("user.perfil")).then(
+    this.userService.permissoesPorId(2).then(
       (data: any) => {
         this.tabela = data;
         this.userService.log("Obter permissão por idPerfil: " + localStorage.getItem("user.perfil") );
