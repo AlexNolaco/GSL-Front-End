@@ -19,6 +19,17 @@ export class ContentComponent implements OnInit  {
     this.pagina = pag;
   }
   ngOnInit() {
+    window.addEventListener('resize', function () {
+      var largura = window.innerWidth;
+      var a = document.getElementById("sidebarMenu");
+      if (a) {
+        if (largura > 750)
+          a.style.marginTop = "0px";
+        else
+          a.style.marginTop = "-30px";
+      }
+
+    });
     this.userService.permissoes().then(
       async (data: any) => {
         let filtrado = data.filter((x: any) => x.leitura == true);
@@ -55,7 +66,7 @@ export class ContentComponent implements OnInit  {
     var a = document.getElementById("sidebarMenu");
 
 
-    if (a  ) {
+    if (a) {
       if (!this.aberto) {
         a.style.display = "block";
         a.style.marginTop = "-30px";
