@@ -50,7 +50,7 @@
 
         <ul class="nav flex-column">
           <li *ngFor="let item of tabelaPermissoes; index as i;" class="nav-item">
-            <a class="nav-link " aria-current="page" (click)="setPagina(item.tela)" href="#">
+            <a class="nav-link " aria-current="page" (click)="setPagina(item.tela);mostraMenu()" href="#">
               <span data-feather="home"></span>
               {{item.tela}}
             </a>
