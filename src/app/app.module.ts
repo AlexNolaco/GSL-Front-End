@@ -19,7 +19,6 @@ import { HomeComponent } from './pages/home/home.component';
   declarations: [
     AppComponent,
     LoginComponent,
-
     ContentComponent,
     PerfisComponent,
     ClientesComponent,
