@@ -24,7 +24,9 @@ export class LoginService {
   }
 
   public async obtemTodosOsUsuariosExcetoLogado(item: any) {
-    return await this.http.get(this.api + "/usuarios?idUsuarioLogado="+ item).toPromise();
+    return await this.http
+      .get(this.api + '/usuarios?idUsuarioLogado=' + item)
+      .toPromise();
   }
 
   public async obterPermissoesPorId(id: any) {
@@ -65,13 +67,15 @@ export class LoginService {
     return token != null;
   }
   public async cadastrarUsuario(obj: any) {
-    return this.http.post(this.api + "/usuarios", obj).toPromise();
+    return this.http.post(this.api + '/usuarios', obj).toPromise();
   }
 
   public async removerUsuario(obj: any) {
-    return await this.http.delete(this.api + "/usuarios?identificador=" + obj).toPromise();
+    return await this.http
+      .delete(this.api + '/usuarios?identificador=' + obj)
+      .toPromise();
   }
   public async editarUsuario(obj: any) {
-    return await this.http.put(this.api + "/usuarios", obj).toPromise();
+    return await this.http.put(this.api + '/usuarios', obj).toPromise();
   }
 }
