@@ -30,7 +30,7 @@ export class PerfisComponent implements OnInit {
   salvar() {
     this.salvando = true;
     this.tabela.forEach((element: any) => {
-      this.loginService.alterarpermissao(element).then(
+      this.loginService.alterarPermissao(element).then(
         (data: any) => {
           this.salvando = false;
           this.salvoSucesso = true;

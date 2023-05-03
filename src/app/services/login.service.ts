@@ -35,7 +35,7 @@ export class LoginService {
       .toPromise();
   }
 
-  public async alterarpermissao(item: any) {
+  public async alterarPermissao(item: any) {
     return await this.http.put(this.api + '/permissoes', item).toPromise();
   }
 
