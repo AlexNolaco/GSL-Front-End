@@ -12,13 +12,13 @@ export class FornecedoresComponent implements OnInit {
   conteudo: any;
   construct = false;
   @Input() permissao: any;
-  mostrarAlerta() {
-    this.construct = true;
-    setTimeout(() => { this.construct = false }, 5000);
-  }
 
   async ngOnInit() {
     this.userService.log("Acesso à tela: " + this.permissao.tela);
+    await this.obterFornecedores();
+  }
+
+  async obterFornecedores() {
     await this.userService.obterFornecedores().then(
       (data: any) => {
         this.conteudo = data;
@@ -28,5 +28,10 @@ export class FornecedoresComponent implements OnInit {
         this.userService.log("Erro ao obter todos os fornecedores.");
       }
     );
+  }
+
+  mostrarAlerta() {
+    this.construct = true;
+    setTimeout(() => { this.construct = false }, 5000);
   }
 }

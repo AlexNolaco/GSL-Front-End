@@ -2,21 +2,43 @@
   <main class="form-signin">
     <h1 class="mb-4 fw-normal">GSL</h1>
     <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" [(ngModel)]="login" placeholder="name@example.com">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        [(ngModel)]="login"
+        placeholder="name@example.com"
+      />
       <label for="floatingInput">Login</label>
-    </div><br>
-    <div class="form-floating">
-      <input (keydown.enter)="logar()" [(ngModel)]="senha" type="password" class="form-control" id="floatingPassword"
-        placeholder="Password">
-      <label for="floatingPassword">Senha</label>
-    </div><br>
-    <button [disabled]="login == '' || senha == ''" (click)="logar()" style="cursor:pointer"
-      class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
-    <br><br>
-    <div *ngIf="erro" class="alert alert-danger" style="z-index: 99999;" role="alert">
-      {{erroMessage}}
     </div>
-    <a target="blank" style="font-size: 12px;float:right" href="https://www.linkedin.com/in/alexnolaco/"
-      class="mb-4 fw-normal">Powered by: Alex Nolaço</a>
+    <br />
+    <div class="form-floating">
+      <input
+        (keydown.enter)="logar()"
+        [(ngModel)]="senha"
+        type="password"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="Password"
+      />
+      <label for="floatingPassword">Senha</label>
+    </div>
+    <br />
+    <button
+      [disabled]="login == '' || senha == ''"
+      (click)="logar()"
+      class="w-100 btn btn-lg btn-primary cursor-hand"
+      type="submit">
+      Entrar
+    </button>
+    <br /><br />
+    <div *ngIf="erro" class="alert alert-danger floating" role="alert">
+      {{ erroMessage }}
+    </div>
+    <a
+      target="blank"
+      href="https://www.linkedin.com/in/alexnolaco/"
+      class="mb-4 fw-normal powered"
+      >Powered by: Alex Nolaço</a>
   </main>
 </body>

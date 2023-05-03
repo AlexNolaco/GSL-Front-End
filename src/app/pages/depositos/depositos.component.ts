@@ -4,20 +4,21 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-depositos',
   templateUrl: './depositos.component.html',
-  styleUrls: ['./depositos.component.sass']
+  styleUrls: ['./depositos.component.css']
 })
 export class DepositosComponent implements OnInit {
 
   constructor(private userService: UserService) { }
-  conteudo:any;
-  construct = false;
+  conteudo: any;
+  emConstrucao = false;
   @Input() permissao:any;
-  mostrarAlerta() {
-    this.construct = true;
-    setTimeout(() => {this.construct = false}, 5000);
-  }
+
   async ngOnInit() {
     this.userService.log("Acesso à tela: " + this.permissao.tela);
+    await this.obterDepositos();
+  }
+
+  async obterDepositos() {
     await this.userService.obterDepositos().then(
       (data: any) => {
         this.conteudo = data;
@@ -27,5 +28,10 @@ export class DepositosComponent implements OnInit {
         this.userService.log("Erro ao obter todos os depósitos.");
       }
     );
+  }
+
+  mostrarAlerta() {
+    this.emConstrucao = true;
+    setTimeout(() => {this.emConstrucao = false}, 5000);
   }
 }
