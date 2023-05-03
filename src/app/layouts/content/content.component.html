@@ -1,35 +1,14 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.88.1">
-  <title>Dashboard Template · Bootstrap v5.1</title>
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
+  <title>Dashboard</title>
 </head>
-
 <body>
   <header class="navbar navbar-light sticky-top bg-light flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand  bg-light col-md-3 col-lg-2 me-0 px-3"><strong>GSL</strong></a>
-    <button (click)="mostraMenu()" class="navbar-toggler position-absolute d-md-none collapsed" type="button"
+    <a class="navbar-brand bg-light col-md-3 col-lg-2 me-0 px-3"><strong>GSL</strong></a>
+    <button (click)="mostrarMenu()" class="navbar-toggler position-absolute d-md-none collapsed" type="button"
       data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
       aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -41,12 +20,12 @@
         <div class="position-sticky pt-3">
           <ul class="nav flex-column">
             <li *ngFor="let item of tabelaPermissoes; index as i;" class="nav-item">
-              <a class="nav-link " aria-current="page" (click)="setPagina(item.tela);mostraMenu()" href="#">
+              <a class="nav-link " aria-current="page" (click)="setarPagina(item.tela); mostrarMenu()" href="#">
                 <span data-feather="home"></span>
                 {{item.tela}}
               </a>
             </li>
-            <li (click)="remove()" class="nav-item">
+            <li (click)="logoff()" class="nav-item">
               <a class="nav-link" href="#">
                 <span data-feather="file-text"></span>
                 Sair do sistema
@@ -57,19 +36,13 @@
       </nav>
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-          <app-clientes [permissao]="selecionaPermissao()" style="width: 100%!important;" *ngIf="pagina == 'Clientes'">
-          </app-clientes>
-          <app-depositos [permissao]="selecionaPermissao()" style="width: 100%!important;"
-            *ngIf="pagina == 'Depósitos'"> </app-depositos>
-          <app-usuarios [permissao]="selecionaPermissao()" style="width: 100%!important;" *ngIf="pagina == 'Usuários'">
-          </app-usuarios>
-          <app-perfis [permissao]="selecionaPermissao()" style="width: 100%!important;" *ngIf="pagina == 'Perfis'">
-          </app-perfis>
-          <app-mercadorias [permissao]="selecionaPermissao()" style="width: 100%!important;"
-            *ngIf="pagina == 'Mercadorias'"> </app-mercadorias>
-          <app-fornecedores [permissao]="selecionaPermissao()" style="width: 100%!important;"
-            *ngIf="pagina == 'Fornecedores'"> </app-fornecedores>
-          <app-home style="width: 100%!important;" *ngIf="pagina == 'Home'"> </app-home>
+          <app-clientes [permissao]="selecionarPermissao()" class="leftOption" *ngIf="pagina == 'Clientes'"></app-clientes>
+          <app-depositos [permissao]="selecionarPermissao()" class="leftOption" *ngIf="pagina == 'Depósitos'"></app-depositos>
+          <app-usuarios [permissao]="selecionarPermissao()" class="leftOption" *ngIf="pagina == 'Usuários'"></app-usuarios>
+          <app-perfis [permissao]="selecionarPermissao()" class="leftOption" *ngIf="pagina == 'Perfis'"></app-perfis>
+          <app-mercadorias [permissao]="selecionarPermissao()" class="leftOption" *ngIf="pagina == 'Mercadorias'"> </app-mercadorias>
+          <app-fornecedores [permissao]="selecionarPermissao()" *ngIf="pagina == 'Fornecedores'"> </app-fornecedores>
+          <app-home class="leftOption" *ngIf="pagina == 'Home'"> </app-home>
         </div>
       </main>
     </div>
