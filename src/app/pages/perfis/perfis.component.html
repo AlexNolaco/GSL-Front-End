@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Perfis</h2>
-  <br>
+  <br />
   <div *ngIf="salvoSucesso" class="alert alert-success" role="alert">
     Salvo com sucesso!
   </div>
@@ -16,7 +16,7 @@
       </select>
     </div>
   </div>
-  <br>
+  <br />
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -29,31 +29,51 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let tb of tabela;let i = index">
+        <ng-container *ngFor="let tb of tabela; let i = index">
           <tr>
-            <td> {{tb.nometela}} </td>
+            <td>{{ tb.nometela }}</td>
             <td>
               <div class="form-check">
-                <input class="form-check-input" style="cursor:pointer" type="checkbox" [checked]="tb.leitura"
-                  [(ngModel)]="tb.leitura" value="">
+                <input
+                  class="form-check-input cursor-hand"
+                  type="checkbox"
+                  [checked]="tb.leitura"
+                  [(ngModel)]="tb.leitura"
+                  value=""
+                />
               </div>
             </td>
             <td>
               <div class="form-check">
-                <input class="form-check-input" style="cursor:pointer" type="checkbox" [checked]="tb.gravacao"
-                  [(ngModel)]="tb.gravacao" value="">
+                <input
+                  class="form-check-input cursor-hand"
+                  type="checkbox"
+                  [checked]="tb.gravacao"
+                  [(ngModel)]="tb.gravacao"
+                  value=""
+                />
               </div>
             </td>
             <td>
               <div class="form-check">
-                <input class="form-check-input" style="cursor:pointer" type="checkbox" [checked]="tb.edicao"
-                  [(ngModel)]="tb.edicao" value="">
+                <input
+                  class="form-check-input cursor-hand"
+                  type="checkbox"
+                  [checked]="tb.edicao"
+                  [(ngModel)]="tb.edicao"
+                  value=""
+                />
               </div>
             </td>
             <td>
               <div class="form-check">
-                <input class="form-check-input" style="cursor:pointer" type="checkbox" [checked]="tb.remocao"
-                  [(ngModel)]="tb.remocao" value="">
+                <input
+                  class="form-check-input cursor-hand"
+                  type="checkbox"
+                  [checked]="tb.remocao"
+                  [(ngModel)]="tb.remocao"
+                  value=""
+                />
               </div>
             </td>
           </tr>
@@ -61,6 +81,11 @@
       </tbody>
     </table>
   </div>
-  <button *ngIf="permissao.gravacao" style="float:right" (click)="salvar()" type="button"
-    class="btn btn-outline-primary">Salvar</button>
+  <button
+    *ngIf="permissao.gravacao"
+    (click)="salvar()"
+    type="button"
+    class="btn btn-outline-primary save">
+    Salvar
+  </button>
 </div>

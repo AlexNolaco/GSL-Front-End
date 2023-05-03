@@ -1,37 +1,43 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { UsuariosService } from '../../services/usuarios.service';
+import { FornecedoresService } from 'src/app/services/fornecedores.service';
 
 @Component({
   selector: 'app-fornecedores',
   templateUrl: './fornecedores.component.html',
-  styleUrls: ['./fornecedores.component.sass']
+  styleUrls: ['./fornecedores.component.sass'],
 })
 export class FornecedoresComponent implements OnInit {
-
-  constructor(private userService: UserService) { }
   conteudo: any;
   construct = false;
   @Input() permissao: any;
 
+  constructor(
+    private usuariosService: UsuariosService,
+    private fornecedoresService: FornecedoresService
+  ) {}
+
   async ngOnInit() {
-    this.userService.log("Acesso à tela: " + this.permissao.tela);
+    this.usuariosService.rastrear('Acesso à tela: ' + this.permissao.tela);
     await this.obterFornecedores();
   }
 
   async obterFornecedores() {
-    await this.userService.obterFornecedores().then(
+    await this.fornecedoresService.obterFornecedores().then(
       (data: any) => {
         this.conteudo = data;
-        this.userService.log("Obter todos os fornecedores.");
+        this.usuariosService.rastrear('Obter todos os fornecedores.');
       },
       (err) => {
-        this.userService.log("Erro ao obter todos os fornecedores.");
+        this.usuariosService.rastrear('Erro ao obter todos os fornecedores.');
       }
     );
   }
 
   mostrarAlerta() {
     this.construct = true;
-    setTimeout(() => { this.construct = false }, 5000);
+    setTimeout(() => {
+      this.construct = false;
+    }, 5000);
   }
 }

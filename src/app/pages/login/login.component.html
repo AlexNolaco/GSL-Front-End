@@ -14,7 +14,7 @@
     <br />
     <div class="form-floating">
       <input
-        (keydown.enter)="logar()"
+        (keydown.enter)="rastrear()"
         [(ngModel)]="senha"
         type="password"
         class="form-control"
@@ -26,7 +26,7 @@
     <br />
     <button
       [disabled]="login == '' || senha == ''"
-      (click)="logar()"
+      (click)="rastrear()"
       class="w-100 btn btn-lg btn-primary cursor-hand"
       type="submit">
       Entrar

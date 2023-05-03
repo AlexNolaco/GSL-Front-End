@@ -1,31 +1,43 @@
-import { UserService } from './../../services/user.service';
 import { Component, Input, OnInit } from '@angular/core';
+import { MercadoriasService } from 'src/app/services/mercadorias.service';
+import { LoginService } from './../../services/login.service';
 
 @Component({
   selector: 'app-mercadorias',
   templateUrl: './mercadorias.component.html',
-  styleUrls: ['./mercadorias.component.sass']
+  styleUrls: ['./mercadorias.component.css'],
 })
 export class MercadoriasComponent implements OnInit {
-
-  constructor(private userService: UserService) { }
   conteudo: any;
   @Input() permissao: any;
   construct = false;
-  mostrarAlerta() {
-    this.construct = true;
-    setTimeout(() => { this.construct = false }, 5000);
-  }
+
+  constructor(
+    private loginService: LoginService,
+    private mercadoriasService: MercadoriasService
+  ) { }
 
   async ngOnInit() {
-    this.userService.log("Acesso à tela: " + this.permissao.tela);
-    await this.userService.obterMercadorias().then(
+    this.loginService.rastrear('Acesso à tela: ' + this.permissao.tela);
+    this.obterMercadorias();
+  }
+
+  async obterMercadorias() {
+    await this.mercadoriasService.obterMercadorias().then(
       (data: any) => {
         this.conteudo = data;
-        this.userService.log("Obter todas as mercadorias.");
-      }, (err) => {
-        this.userService.log("Erro ao obter todas as mercadorias.");
+        this.loginService.rastrear('Obter todas as mercadorias.');
+      },
+      (err) => {
+        this.loginService.rastrear('Erro ao obter todas as mercadorias.');
       }
     );
+  }
+
+  mostrarAlerta() {
+    this.construct = true;
+    setTimeout(() => {
+      this.construct = false;
+    }, 5000);
   }
 }

@@ -1,37 +1,44 @@
-import { UserService } from './../../services/user.service';
+import { DepositosService } from 'src/app/services/depositos.service';
+import { LoginService } from '../../services/login.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-depositos',
   templateUrl: './depositos.component.html',
-  styleUrls: ['./depositos.component.css']
+  styleUrls: ['./depositos.component.css'],
 })
 export class DepositosComponent implements OnInit {
-
-  constructor(private userService: UserService) { }
   conteudo: any;
   emConstrucao = false;
-  @Input() permissao:any;
+  @Input() permissao: any;
+
+  constructor(
+    private loginService: LoginService,
+    private depositosService: DepositosService
+  ) {}
+
 
   async ngOnInit() {
-    this.userService.log("Acesso à tela: " + this.permissao.tela);
+    this.loginService.rastrear('Acesso à tela: ' + this.permissao.tela);
     await this.obterDepositos();
   }
 
   async obterDepositos() {
-    await this.userService.obterDepositos().then(
+    await this.depositosService.obterDepositos().then(
       (data: any) => {
         this.conteudo = data;
-        this.userService.log("Obter todos os depósitos.");
+        this.loginService.rastrear('Obter todos os depósitos.');
       },
       (err) => {
-        this.userService.log("Erro ao obter todos os depósitos.");
+        this.loginService.rastrear('Erro ao obter todos os depósitos.');
       }
     );
   }
 
   mostrarAlerta() {
     this.emConstrucao = true;
-    setTimeout(() => {this.emConstrucao = false}, 5000);
+    setTimeout(() => {
+      this.emConstrucao = false;
+    }, 5000);
   }
 }

@@ -1,36 +1,44 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { LoginService } from '../../services/login.service';
+import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.css']
+  styleUrls: ['./clientes.component.css'],
 })
 export class ClientesComponent implements OnInit {
-  constructor(private userService: UserService) { }
   conteudo: any;
   construct = false;
   @Input() permissao: any;
 
+  constructor(
+    private loginService: LoginService,
+    private clientesService: ClientesService
+  ) {}
+
+
   async ngOnInit(): Promise<void> {
-    this.userService.log("Acesso à tela: " + this.permissao.tela);
+    this.loginService.rastrear('Acesso à tela: ' + this.permissao.tela);
     await this.obterClientes();
   }
 
   async obterClientes() {
-    await this.userService.obterClientes().then(
+    await this.clientesService.obterClientes().then(
       (data: any) => {
         this.conteudo = data;
-        this.userService.log("Obter todos os clientes.");
+        this.loginService.rastrear('Obter todos os clientes.');
       },
       (err) => {
-        this.userService.log("Erro ao obter todos os clientes.");
+        this.loginService.rastrear('Erro ao obter todos os clientes.');
       }
     );
   }
 
   mostrarAlerta() {
     this.construct = true;
-    setTimeout(() => { this.construct = false }, 5000);
+    setTimeout(() => {
+      this.construct = false;
+    }, 5000);
   }
 }

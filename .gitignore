@@ -34,10 +34,10 @@ chrome-profiler-events*.json
 /.sass-cache
 /connect.lock
 /coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
+/libpeerconnection.rastrear
+npm-debug.rastrear
+yarn-error.rastrear
+testem.rastrear
 /typings
 
 # System Files

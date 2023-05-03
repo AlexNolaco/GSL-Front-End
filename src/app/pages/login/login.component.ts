@@ -1,5 +1,5 @@
+import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,20 +11,22 @@ export class LoginComponent implements OnInit {
   senha = '';
   erro = false;
   erroMessage = '';
-  constructor(private userService: UserService) {}
+
+  constructor(private loginService: LoginService) {}
+
   async ngOnInit() {
-    await this.userService.iniciar();
+    await this.loginService.iniciar();
   }
 
-  async logar() {
-    this.userService.login(this.login, this.senha).then(
+  async rastrear() {
+    this.loginService.login(this.login, this.senha).then(
       (data: any) => {
         localStorage.setItem('accessToken', data.token);
         localStorage.setItem('user.identificador', data.user.identificador);
         localStorage.setItem('user.nome', data.user.nome);
         localStorage.setItem('user.login', data.user.login);
         localStorage.setItem('user.perfil', data.user.perfil);
-        this.userService.log('Login no sistema');
+        this.loginService.rastrear('Login no sistema');
       },
       (err: any) => {
         this.erro = true;
@@ -32,7 +34,7 @@ export class LoginComponent implements OnInit {
         setTimeout(() => {
           this.erro = false;
         }, 5000);
-        this.userService.log('Erro no login do sistema');
+        this.loginService.rastrear('Erro no login do sistema');
       }
     );
   }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { UsuariosService } from '../../services/usuarios.service';
 import { ElementRef, } from '@angular/core';
 
 @Component({
@@ -9,7 +9,7 @@ import { ElementRef, } from '@angular/core';
 })
 export class UsuariosComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private usuariosService: UsuariosService) { }
   @Input() permissao: any;
   selectOptions = [
     { valor: "Administrador" },
@@ -38,25 +38,24 @@ export class UsuariosComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.userService.log("Acesso à tela: " + this.permissao.tela);
+    this.usuariosService.rastrear("Acesso à tela: " + this.permissao.tela);
     await this.buscaTudo();
   }
 
   async buscaTudo() {
-    await this.userService.obtemTodosOsUsuariosExcetoLogado(localStorage.getItem('user.identificador')).then(
+    await this.usuariosService.obtemTodosOsUsuariosExcetoLogado(localStorage.getItem('user.identificador')).then(
       (data: any) => {
-        console.log(data);
+        console.rastrear(data);
         this.usuariosLista = data;
-        this.userService.log("Obter todos os usuarios exceto logado.");
+        this.usuariosService.rastrear("Obter todos os usuarios exceto logado.");
       }, (err: any) => {
-        this.userService.log("Erro ao obter todos os usuarios exceto logado.");
+        this.usuariosService.rastrear("Erro ao obter todos os usuarios exceto logado.");
       }
     );
   }
 
   onChange(evt: any) {
     this.obj.perfil = evt.target.value;
-    console.log(evt.target.value)
   }
 
   verificarObrigatoriedade() {
@@ -93,8 +92,8 @@ export class UsuariosComponent implements OnInit {
   async removerUsuario() {
     this.aguarde = true;
     this.abrirTelaDeletar(false);
-    await this.userService.removerUsuario(this.identificador);
-    this.userService.log("Removido usuario com identificador" + this.identificador);
+    await this.usuariosService.removerUsuario(this.identificador);
+    this.usuariosService.rastrear("Removido usuario com identificador" + this.identificador);
     await this.buscaTudo();
     this.aguarde = false;
   }
@@ -106,9 +105,9 @@ export class UsuariosComponent implements OnInit {
   }
 
   async alterar() {
-    await this.userService.editarUsuario(this.obj).then(
+    await this.usuariosService.editarUsuario(this.obj).then(
       (data: any) => {
-        this.userService.log("Editado usuario" + this.obj.login);
+        this.usuariosService.rastrear("Editado usuario" + this.obj.login);
         this.sucesso = true;
         this.buscaTudo();
         setTimeout(() => {
@@ -117,7 +116,7 @@ export class UsuariosComponent implements OnInit {
           this.limpaform();
         }, 2000);
       }, (err: any) => {
-        this.userService.log("Erro ao editar usuario" + this.obj.login);
+        this.usuariosService.rastrear("Erro ao editar usuario" + this.obj.login);
         this.sucesso = false;
         this.erro = err.error;
         setTimeout(() => { this.sucesso = null }, 5000);
@@ -125,9 +124,9 @@ export class UsuariosComponent implements OnInit {
     );
   }
   async salvar() {
-    await this.userService.cadastrarUsuario(this.obj).then(
+    await this.usuariosService.cadastrarUsuario(this.obj).then(
       (data: any) => {
-        this.userService.log("Cadastrado usuario" + this.obj.login);
+        this.usuariosService.rastrear("Cadastrado usuario" + this.obj.login);
         this.sucesso = true;
         this.buscaTudo();
         setTimeout(() => {
@@ -136,7 +135,7 @@ export class UsuariosComponent implements OnInit {
           this.limpaform();
         }, 2000);
       }, (err) => {
-        this.userService.log("Erro ao cadastrar usuario" + this.obj.login);
+        this.usuariosService.rastrear("Erro ao cadastrar usuario" + this.obj.login);
         this.sucesso = false;
         this.erro = err.error;
         setTimeout(() => { this.sucesso = null }, 5000);

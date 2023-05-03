@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AfterViewInit, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
-import { UserService } from './services/user.service';
+import { UsuariosService } from './services/usuarios.service';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +13,14 @@ export class AppComponent implements OnInit {
   public isAdministratorMode = false;
   constructor(
     private router: Router,
-    private userService: UserService
+    private usuariosService: UsuariosService
   ) { }
 
   ngOnInit(): void {
-    //this.userService.configureAuth();
+
   }
 
   getLogged(): boolean {
-    return this.userService.IsUserLogged();
+    return this.usuariosService.verificarUsuarioLogado();
   }
 }

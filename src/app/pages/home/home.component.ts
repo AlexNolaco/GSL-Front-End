@@ -2,33 +2,33 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
   nomeUser: any;
   perfil: any;
   data: any;
+
+  constructor() {}
 
   ngOnInit(): void {
     this.nomeUser = localStorage.getItem('user.nome');
     const expr = localStorage.getItem('user.perfil');
     switch (expr) {
-      case "1":
-        this.perfil = "Administrador";
+      case '1':
+        this.perfil = 'Administrador';
         break;
-      case "4":
-        this.perfil = "Colaborador";
+      case '4':
+        this.perfil = 'Colaborador';
         break;
-      case "2":
-        this.perfil = "Fornecedor";
+      case '2':
+        this.perfil = 'Fornecedor';
         break;
-      case "3":
-        this.perfil = "Cliente";
+      case '3':
+        this.perfil = 'Cliente';
         break;
       default:
-        this.perfil = "Desconhecido";
+        this.perfil = 'Desconhecido';
     }
 
     this.data = new Date().toLocaleString();
