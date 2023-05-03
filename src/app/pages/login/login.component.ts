@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
   login = '';
   senha = '';
   erro = false;
-  erroMessage = '';
+  errorMessage = '';
 
   constructor(private loginService: LoginService) {}
 
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       },
       (err: any) => {
         this.erro = true;
-        this.erroMessage = err.error.message;
+        this.errorMessage = err.error.message;
         setTimeout(() => {
           this.erro = false;
         }, 5000);

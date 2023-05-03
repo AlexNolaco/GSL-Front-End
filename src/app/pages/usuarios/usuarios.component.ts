@@ -1,15 +1,15 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { UsuariosService } from '../../services/usuarios.service';
-import { ElementRef, } from '@angular/core';
+import { LoginService } from '../../services/login.service';
+import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.sass']
+  styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
 
-  constructor(private usuariosService: UsuariosService) { }
+  constructor(private loginService: LoginService) { }
   @Input() permissao: any;
   selectOptions = [
     { valor: "Administrador" },
@@ -38,18 +38,17 @@ export class UsuariosComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.usuariosService.rastrear("Acesso à tela: " + this.permissao.tela);
+    this.loginService.rastrear("Acesso à tela: " + this.permissao.tela);
     await this.buscaTudo();
   }
 
   async buscaTudo() {
-    await this.usuariosService.obtemTodosOsUsuariosExcetoLogado(localStorage.getItem('user.identificador')).then(
+    await this.loginService.obtemTodosOsUsuariosExcetoLogado(localStorage.getItem('user.identificador')).then(
       (data: any) => {
-        console.rastrear(data);
         this.usuariosLista = data;
-        this.usuariosService.rastrear("Obter todos os usuarios exceto logado.");
+        this.loginService.rastrear("Obter todos os usuarios exceto logado.");
       }, (err: any) => {
-        this.usuariosService.rastrear("Erro ao obter todos os usuarios exceto logado.");
+        this.loginService.rastrear("Erro ao obter todos os usuarios exceto logado.");
       }
     );
   }
@@ -92,22 +91,22 @@ export class UsuariosComponent implements OnInit {
   async removerUsuario() {
     this.aguarde = true;
     this.abrirTelaDeletar(false);
-    await this.usuariosService.removerUsuario(this.identificador);
-    this.usuariosService.rastrear("Removido usuario com identificador" + this.identificador);
+    await this.loginService.removerUsuario(this.identificador);
+    this.loginService.rastrear("Removido usuario com identificador" + this.identificador);
     await this.buscaTudo();
     this.aguarde = false;
   }
 
-  editar(a: any) {
+  editar(param: any) {
     this.incluir(true, true)
-    this.obj = a;
+    this.obj = param;
     let el = document.querySelector('.form-select');
   }
 
   async alterar() {
-    await this.usuariosService.editarUsuario(this.obj).then(
+    await this.loginService.editarUsuario(this.obj).then(
       (data: any) => {
-        this.usuariosService.rastrear("Editado usuario" + this.obj.login);
+        this.loginService.rastrear("Editado usuario" + this.obj.login);
         this.sucesso = true;
         this.buscaTudo();
         setTimeout(() => {
@@ -116,7 +115,7 @@ export class UsuariosComponent implements OnInit {
           this.limpaform();
         }, 2000);
       }, (err: any) => {
-        this.usuariosService.rastrear("Erro ao editar usuario" + this.obj.login);
+        this.loginService.rastrear("Erro ao editar usuario" + this.obj.login);
         this.sucesso = false;
         this.erro = err.error;
         setTimeout(() => { this.sucesso = null }, 5000);
@@ -124,9 +123,9 @@ export class UsuariosComponent implements OnInit {
     );
   }
   async salvar() {
-    await this.usuariosService.cadastrarUsuario(this.obj).then(
+    await this.loginService.cadastrarUsuario(this.obj).then(
       (data: any) => {
-        this.usuariosService.rastrear("Cadastrado usuario" + this.obj.login);
+        this.loginService.rastrear("Cadastrado usuario" + this.obj.login);
         this.sucesso = true;
         this.buscaTudo();
         setTimeout(() => {
@@ -134,8 +133,8 @@ export class UsuariosComponent implements OnInit {
           this.incluir(false)
           this.limpaform();
         }, 2000);
-      }, (err) => {
-        this.usuariosService.rastrear("Erro ao cadastrar usuario" + this.obj.login);
+      }, (err: any) => {
+        this.loginService.rastrear("Erro ao cadastrar usuario" + this.obj.login);
         this.sucesso = false;
         this.erro = err.error;
         setTimeout(() => { this.sucesso = null }, 5000);

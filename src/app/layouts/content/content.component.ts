@@ -1,5 +1,5 @@
 import { OnInit, Component } from '@angular/core';
-import { UsuariosService } from '../../services/usuarios.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-content',
@@ -8,7 +8,7 @@ import { UsuariosService } from '../../services/usuarios.service';
 })
 export class ContentComponent implements OnInit {
 
-  constructor(private usuariosService: UsuariosService) { }
+  constructor(private loginService: LoginService) { }
   aberto = false;
   tabelaPermissoes: any = [];
   pagina = "Home";
@@ -19,7 +19,7 @@ export class ContentComponent implements OnInit {
   }
 
   obterPermissoes() {
-    this.usuariosService.obterPermissoes().then(
+    this.loginService.obterPermissoes().then(
       async (data: any) => {
         let filtrado = data.filter((x: any) => x.leitura == true);
         for (let index = 0; index < filtrado.length; ++index) {
@@ -32,7 +32,7 @@ export class ContentComponent implements OnInit {
           this.tabelaPermissoes.push(objetoFinal);
         }
         localStorage.setItem("permissoes", JSON.stringify(this.tabelaPermissoes));
-        this.usuariosService.rastrear("Obter permissões");
+        this.loginService.rastrear("Obter permissões");
       }
     );
   }
@@ -55,7 +55,7 @@ export class ContentComponent implements OnInit {
   }
 
   logoff() {
-    this.usuariosService.rastrear("Logoff no sistema");
+    this.loginService.rastrear("Logoff no sistema");
     localStorage.clear();
   }
 

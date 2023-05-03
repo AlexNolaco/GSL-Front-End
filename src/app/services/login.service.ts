@@ -23,6 +23,10 @@ export class LoginService {
       .toPromise();
   }
 
+  public async obtemTodosOsUsuariosExcetoLogado(item: any) {
+    return await this.http.get(this.api + "/usuarios?idUsuarioLogado="+ item).toPromise();
+  }
+
   public async obterPermissoesPorId(id: any) {
     return await this.http
       .get(this.api + '/Permissoes?idPerfil=' + id)
@@ -59,5 +63,15 @@ export class LoginService {
   public verificarUsuarioLogado() {
     let token = localStorage.getItem('accessToken');
     return token != null;
+  }
+  public async cadastrarUsuario(obj: any) {
+    return this.http.post(this.api + "/usuarios", obj).toPromise();
+  }
+
+  public async removerUsuario(obj: any) {
+    return await this.http.delete(this.api + "/usuarios?identificador=" + obj).toPromise();
+  }
+  public async editarUsuario(obj: any) {
+    return await this.http.put(this.api + "/usuarios", obj).toPromise();
   }
 }

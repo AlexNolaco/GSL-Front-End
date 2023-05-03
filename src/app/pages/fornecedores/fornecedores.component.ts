@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UsuariosService } from '../../services/usuarios.service';
+import { LoginService } from '../../services/login.service';
 import { FornecedoresService } from 'src/app/services/fornecedores.service';
 
 @Component({
   selector: 'app-fornecedores',
   templateUrl: './fornecedores.component.html',
-  styleUrls: ['./fornecedores.component.sass'],
+  styleUrls: ['./fornecedores.component.css'],
 })
 export class FornecedoresComponent implements OnInit {
   conteudo: any;
@@ -13,12 +13,12 @@ export class FornecedoresComponent implements OnInit {
   @Input() permissao: any;
 
   constructor(
-    private usuariosService: UsuariosService,
+    private loginService: LoginService,
     private fornecedoresService: FornecedoresService
   ) {}
 
   async ngOnInit() {
-    this.usuariosService.rastrear('Acesso à tela: ' + this.permissao.tela);
+    this.loginService.rastrear('Acesso à tela: ' + this.permissao.tela);
     await this.obterFornecedores();
   }
 
@@ -26,10 +26,10 @@ export class FornecedoresComponent implements OnInit {
     await this.fornecedoresService.obterFornecedores().then(
       (data: any) => {
         this.conteudo = data;
-        this.usuariosService.rastrear('Obter todos os fornecedores.');
+        this.loginService.rastrear('Obter todos os fornecedores.');
       },
       (err) => {
-        this.usuariosService.rastrear('Erro ao obter todos os fornecedores.');
+        this.loginService.rastrear('Erro ao obter todos os fornecedores.');
       }
     );
   }

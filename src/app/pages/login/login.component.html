@@ -33,7 +33,7 @@
     </button>
     <br /><br />
     <div *ngIf="erro" class="alert alert-danger floating" role="alert">
-      {{ erroMessage }}
+      {{ errorMessage || 'Usuário não encontrado' }}
     </div>
     <a
       target="blank"
