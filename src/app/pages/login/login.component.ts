@@ -6,18 +6,17 @@ import { UserService } from '../../services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent  implements OnInit {
-  login="";
-  senha="";
-  erro= false;
+export class LoginComponent implements OnInit {
+  login = "";
+  senha = "";
+  erro = false;
   erroMessage = "";
   constructor(private userService: UserService) { }
-
   async ngOnInit() {
     await this.userService.iniciar();
   }
 
-  async logar(){
+  async logar() {
     this.userService.login(this.login, this.senha).then(
       (data: any) => {
         localStorage.setItem('accessToken', data.token);
@@ -26,15 +25,13 @@ export class LoginComponent  implements OnInit {
         localStorage.setItem('user.login', data.user.login);
         localStorage.setItem('user.perfil', data.user.perfil);
         this.userService.log("Login no sistema")
-      },
-      (err: any) => {
+      }, (err: any) => {
         this.erro = true;
         console.log(err);
         this.erroMessage = err.error.message;
-        setTimeout(() => {this.erro= false}, 5000);
+        setTimeout(() => { this.erro = false }, 5000);
         this.userService.log("Erro no login do sistema")
       }
     );
   }
-
 }

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PerfisComponent } from './perfis.component';
 
 describe('PerfisComponent', () => {
@@ -8,9 +7,9 @@ describe('PerfisComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PerfisComponent ]
+      declarations: [PerfisComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

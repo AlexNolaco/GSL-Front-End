@@ -9,13 +9,11 @@ import { UserService } from '../../services/user.service';
 export class ClientesComponent implements OnInit {
 
   constructor(private userService: UserService) { }
-  conteudo:any;
+  conteudo: any;
   construct = false;
-  @Input() permissao:any;
-
+  @Input() permissao: any;
   async ngOnInit(): Promise<void> {
     this.userService.log("Acesso à tela: " + this.permissao.tela);
-
     await this.userService.obterClientes().then(
       (data: any) => {
         this.conteudo = data;
@@ -29,6 +27,6 @@ export class ClientesComponent implements OnInit {
 
   mostrarAlerta() {
     this.construct = true;
-    setTimeout(() => {this.construct = false}, 5000);
+    setTimeout(() => { this.construct = false }, 5000);
   }
 }

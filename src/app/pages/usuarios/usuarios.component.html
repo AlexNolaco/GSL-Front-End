@@ -1,98 +1,92 @@
 <div *ngIf="telaPrincipal">
   <div class="container">
     <h2>Usuários</h2>
-
     <div *ngIf="aguarde" class="alert alert-info" role="alert">
       Aguarde...
     </div>
-
     <div class="row">
-
       <div class="col-12">
-        <button *ngIf="permissao.gravacao"  style="margin-left: 10px; float:right" (click)="incluir(true)" type="button"
-        class="btn btn-outline-primary">Incluir</button>
+        <button *ngIf="permissao.gravacao" style="margin-left: 10px; float:right" (click)="incluir(true)" type="button"
+          class="btn btn-outline-primary">Incluir</button>
       </div>
     </div>
-
     <br>
     <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Nome</th>
-          <th scope="col">Login</th>
-          <th scope="col">Perfil</th>
-          <th scope="col">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let su of usuariosLista">
+      <table class="table">
+        <thead>
           <tr>
-
-            <td>
-              {{su.nome}}
-            </td>
-
-            <td>
-              {{su.login}}
-            </td>
-            <td>
-              {{su.perfil}}
-            </td>
-            <td>
-              <button *ngIf="permissao.edicao"  (click)="editar(su)" type="button"
-              class="btn btn-outline-primary" style="margin-right: 2px;margin-top:2px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-              </svg></button>
-              <button *ngIf="permissao.remocao"  type="button" (click)="abrirTelaDeletar(true); salvaIdentificador(su.identificador)"
-              class="btn btn-outline-danger" style="margin-top:2px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-              </svg></button>
-            </td>
+            <th scope="col">Nome</th>
+            <th scope="col">Login</th>
+            <th scope="col">Perfil</th>
+            <th scope="col">Ações</th>
           </tr>
-
-
-        </ng-container>
-
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let su of usuariosLista">
+            <tr>
+              <td>
+                {{su.nome}}
+              </td>
+              <td>
+                {{su.login}}
+              </td>
+              <td>
+                {{su.perfil}}
+              </td>
+              <td>
+                <button *ngIf="permissao.edicao" (click)="editar(su)" type="button" class="btn btn-outline-primary"
+                  style="margin-right: 2px;margin-top:2px"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                    height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                  </svg></button>
+                <button *ngIf="permissao.remocao" type="button"
+                  (click)="abrirTelaDeletar(true); salvaIdentificador(su.identificador)" class="btn btn-outline-danger"
+                  style="margin-top:2px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                  </svg></button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
-
 <div *ngIf="telaIncluir">
   <div class="container">
     <h2>{{modoEdicao == true ? 'Edição': 'Inclusão'}} de usuário</h2>
     <br>
-
-    <div  *ngIf="sucesso == true && sucesso != null"  class="alert alert-success" role="alert">
+    <div *ngIf="sucesso == true && sucesso != null" class="alert alert-success" role="alert">
       Salvo com sucesso
     </div>
-
     <div *ngIf="sucesso == false &&  sucesso != null" class="alert alert-danger" role="alert">
       {{erro}}
     </div>
-
     <div class="row">
       <div class="col-sm-12 col-md-6">
         <div class="input-group sm-6 mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">Nome</span>
-          <input type="text" class="form-control" [(ngModel)]="obj.nome" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <input type="text" class="form-control" [(ngModel)]="obj.nome" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default">
         </div>
       </div>
       <div class="col-sm-12 col-md-6">
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">Login</span>
-          <input type="text" class="form-control" [(ngModel)]="obj.login" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <input type="text" class="form-control" [(ngModel)]="obj.login" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default">
         </div>
       </div>
-
       <div class="col-sm-12 col-md-6">
         <div class="input-group mb-3">
           <label class="input-group-text" for="inputGroupSelect02">Perfil</label>
-          <select #someVar (change)="onChange($event)" [(ngModel)]="obj.perfil"  class="form-select" id="inputGroupSelect02">
-            <option selected value = "" disabled></option>
-            <option *ngFor="let option of selectOptions" value= {{option.valor}}>
+          <select #someVar (change)="onChange($event)" [(ngModel)]="obj.perfil" class="form-select"
+            id="inputGroupSelect02">
+            <option selected value="" disabled></option>
+            <option *ngFor="let option of selectOptions" value={{option.valor}}>
               {{option.valor}}
             </option>
           </select>
@@ -101,38 +95,34 @@
       <div class="col-sm-12 col-md-6">
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">Senha</span>
-          <input type="password" class="form-control" [(ngModel)]="obj.senha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <input type="password" class="form-control" [(ngModel)]="obj.senha" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default">
         </div>
       </div>
     </div>
-    <button *ngIf="!modoEdicao" style="float:right;  cursor:pointer" (click)="salvar()"  type="button"
-    [disabled]="verificarObrigatoriedade()" [ngClass]="{'btn-outline-primary': !verificarObrigatoriedade(), 'btn-outline-danger' : verificarObrigatoriedade() }"
-    class="btn ">Salvar</button>
+    <button *ngIf="!modoEdicao" style="float:right;  cursor:pointer" (click)="salvar()" type="button"
+      [disabled]="verificarObrigatoriedade()"
+      [ngClass]="{'btn-outline-primary': !verificarObrigatoriedade(), 'btn-outline-danger' : verificarObrigatoriedade() }"
+      class="btn ">Salvar</button>
 
-    <button *ngIf="modoEdicao" style="float:right;  cursor:pointer" (click)="alterar()"  type="button"
-    [disabled]="verificarObrigatoriedade()" [ngClass]="{'btn-outline-primary': !verificarObrigatoriedade(), 'btn-outline-danger' : verificarObrigatoriedade() }"
-    class="btn ">Alterar</button>
+    <button *ngIf="modoEdicao" style="float:right;  cursor:pointer" (click)="alterar()" type="button"
+      [disabled]="verificarObrigatoriedade()"
+      [ngClass]="{'btn-outline-primary': !verificarObrigatoriedade(), 'btn-outline-danger' : verificarObrigatoriedade() }"
+      class="btn ">Alterar</button>
 
-    <button style="float:right;margin-right: 10px; cursor:pointer" (click)="incluir(false); limpaform();" [disabled]="sucesso ==true" type="button"
-    class="btn btn-outline-primary">Cancelar</button>
-
-
+    <button style="float:right;margin-right: 10px; cursor:pointer" (click)="incluir(false); limpaform();"
+      [disabled]="sucesso ==true" type="button" class="btn btn-outline-primary">Cancelar</button>
   </div>
 </div>
-
 <div *ngIf="telaDeletar">
   <div class="container">
-
     <h2>Remoção de usuário</h2>
     <br>
     <h6>Esta operação não pode ser desfeita, deseja prosseguir?</h6>
-
     <br>
     <button style="float:right;margin-right: 10px; cursor:pointer" (click)="abrirTelaDeletar(false)" type="button"
-    class="btn btn-outline-primary">Não</button>
+      class="btn btn-outline-primary">Não</button>
     <button style="float:right;margin-right: 10px; cursor:pointer" (click)="removerUsuario()" type="button"
-    class="btn btn-outline-danger">Sim</button>
-
-
+      class="btn btn-outline-danger">Sim</button>
   </div>
 </div>

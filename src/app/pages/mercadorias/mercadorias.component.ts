@@ -9,24 +9,23 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MercadoriasComponent implements OnInit {
 
   constructor(private userService: UserService) { }
-  conteudo:any;
-  @Input() permissao:any;
+  conteudo: any;
+  @Input() permissao: any;
   construct = false;
   mostrarAlerta() {
-   this.construct = true;
-   setTimeout(() => {this.construct = false}, 5000);
+    this.construct = true;
+    setTimeout(() => { this.construct = false }, 5000);
   }
+
   async ngOnInit() {
     this.userService.log("Acesso à tela: " + this.permissao.tela);
     await this.userService.obterMercadorias().then(
       (data: any) => {
         this.conteudo = data;
         this.userService.log("Obter todas as mercadorias.");
-      },
-      (err) => {
+      }, (err) => {
         this.userService.log("Erro ao obter todas as mercadorias.");
       }
     );
   }
-
 }

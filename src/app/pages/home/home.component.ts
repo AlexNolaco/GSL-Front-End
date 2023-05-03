@@ -26,15 +26,12 @@ export class HomeComponent implements OnInit {
         this.perfil = "Fornecedor";
         break;
       case "3":
-          this.perfil = "Cliente";
-          break;
+        this.perfil = "Cliente";
+        break;
       default:
         this.perfil = "Desconhecido";
     }
+
     this.data = new Date().toLocaleString();
   }
-
-
-
-
 }

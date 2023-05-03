@@ -8,19 +8,19 @@ import { UserService } from './services/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-
 export class AppComponent implements OnInit {
   title = 'GSL';
   public isAdministratorMode = false;
   constructor(
-      private router: Router,
-      private userService: UserService
-  ) {}
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
-     //this.userService.configureAuth();
+    //this.userService.configureAuth();
   }
+
   getLogged(): boolean {
-      return this.userService.IsUserLogged();
+    return this.userService.IsUserLogged();
   }
 }
